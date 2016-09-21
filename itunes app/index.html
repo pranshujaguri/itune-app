@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friend App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/model/friendfactory.js"></script>
+    <script src="js/controller/friendcontroller.js"></script>
+    <style>
+		
+		.frnd{
+			border:10px solid ;
+			margin-right: 100px;
+			margin-top: 100px;
+		
+		}
+		.thumb{
+			margin-left: 10px;
+			border:02px solid ;
+			
+		}
+		.box1{
+			border:05px solid ;
+			width: 976px;
+             height: 85px;
+			margin-right: 100px;
+				margin-left: 0px;
+			color: darkmagenta;
+		}
+		.input{
+			margin-left: 430px;
+			margin-top: 50px;
+		}
+		body{
+			
+  margin-left: 150px;
+  <!---->
+    margin-top: 200px;
+     padding-top: 10px; 
+  
+    padding: 10px;
+    color: deeppink;
+    font-size: x-large;
+
+		}
+		.frndapp{
+			color: deeppink;
+		}
+		/*img : hover{
+			color: azure;
+    border-radius: */40%;
+		}
+	</style>
+    
+</head>
+<body>
+
+ <div class="box1" style=" float: left;">
+ 
+	 
+	 <input  class="input" ng-model="search" type="text" placeholder=" search here" >
+	
+	  <button> ASCENDING </button>
+	  
+	  
+	   <button> DESCENDING</button>
+	   
+	   <div class="" style=" float: left;">
+	   <h2 class="frndapp">&nbsp;  I Tunes</h2>
+	
+       </div>
+	   
+</div>
+  
+    <div class="frnd" ng-app="myfriendapp" ng-controller="friendctrl">
+
+<div class="group" ng-repeat="obj in result.data.results|filter:search">
+<aside class="left">
+<div class="thumb" style=" float: left; ">
+<!--<img src="http://is3.mzstatic.com/image/thumb/Music2/v4/a2/66/32/a2663205-663c-8301-eec7-57937c2d0878/source/30x30bb.jpg">-->
+<img src='{{obj.artworkUrl30}}'>
+</div>
+</aside>
+<hr>
+<section class="left" style="margin-left: 200px;">
+<div>
+<p>{{obj.artistName}}</p>
+<p>{{obj.collectionName}}</p>
+<p>{{obj.trackName}}</p>
+<p>{{obj.artistId}}</p>
+<p>{{obj.collectionId}}</p>
+<p>{{obj.trackId}}</p>
+<p>{{obj.previewUrl}}</p>
+<audio ng-src='{{obj.previewUrl| trustUrl}}' audioplayer  controls></audio>
+<!--
+      <audio controls>
+  <source src="http://a898.phobos.apple.com/us/r1000/039/Music6/v4/13/22/67/1322678b-e40d-fb4d-8d9b-3268fe03b000/mzaf_8818596367816221008.plus.aac.p.m4a" type="audio/m4a">
+ <source  ng-src='{{obj.previewUrl}}' type="audio/m4a"> 
+
+</audio>
+-->
+       
+    </div>
+</section>
+       
+		</div>  
+       
+    </div>
+</body>
+</html>
