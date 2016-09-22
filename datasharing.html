@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> datasharing</title>
+	<script src="js/libs/angular.min.js"></script>
+	<script>
+		
+		var app2 = angular.module("myapp2",[]);
+		app2.factory("appfactory",function(){
+					 var object = {
+					 age:21
+					 
+					 };
+					 return object;
+					 });
+		var app= angular.module("myapp",["myapp2"]);
+		app.controller("myctrl1",function($scope,$rootScope,myfactory,appfactory){
+			myfactory.lastname="Tyson";
+			$scope.msg1=myfactory.name + myfactory.lastname + " age is " + appfactory.age;
+			$scope.message="hello ctrl 1";
+			$rootScope.mymsg="  rootscopehello ctrl1";
+		});
+	
+	app.controller("myctrl2",function($scope,myfactory){
+			$scope.message2= $scope.message + "hello ctrl 2";/*.lastname;*/
+		$scope.msg1=myfactory.name+ myfactory.lastname;
+			$scope.msg1=myfactory.name + myfactory.lastname + " age is " + appfactory.age;
+		});
+	app.controller("myctrl3",function($scope,myfactory){
+			$scope.message3="hello ctrl 3";
+			$scope.msg1=myfactory.name + myfactory.lastname;
+		$scope.msg1=myfactory.name + myfactory.lastname + " age is " + appfactory.age;
+		});
+	app.factory("myfactory",function(){
+		var object = {};
+		object.name ="Mike";
+		return object;
+	});
+	
+	
+	</script>
+</head>
+<body ng-app="myapp">
+	
+	
+	<div ng-controller="myctrl1">
+	{{mymsg}} {{msg1}}	{{message}}
+		<div ng-controller="myctrl2">
+	{{mymsg}}  {{msg1}}	{{message2}}
+	<div ng-controller="myctrl3">
+		{{mymsg}} {{msg1}} {{message3}}
+			</div>
+	</div>
+	</div>
+</body>
+</html>
